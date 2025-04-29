@@ -1,7 +1,7 @@
 public class SlackIntegration {
     
     // Replace this with your actual Slack Webhook URL
-    private static final String SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
+    private static final String SLACK_WEBHOOK_URL = '';
 
     @future(callout=true)
     public static void sendMessage(String message) {
