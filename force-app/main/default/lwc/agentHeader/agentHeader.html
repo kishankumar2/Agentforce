@@ -1,0 +1,269 @@
+<!--
+  @description       : 
+  @author            : Coder
+  @group             : 
+  @last modified on  : 04-24-2025
+  @last modified by  : Coder
+-->
+<template>
+    <div class="clinical-research-container">
+        <!-- Header Banner - Compact Version -->
+        <div class="header-banner-compact">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <h1 class="banner-title">CLINICAL RESEARCH</h1>
+                    <p class="banner-subtitle-small">Advancing Healthcare Through Innovation</p>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <div class="banner-icons-compact">
+                        <span class="icon-container"><lightning-icon icon-name="standard:research" size="small" alternative-text="Research"></lightning-icon></span>
+                        <span class="icon-container"><lightning-icon icon-name="standard:customer_lifecycle_analytics" size="small" alternative-text="Analysis"></lightning-icon></span>
+                        <span class="icon-container"><lightning-icon icon-name="standard:report" size="small" alternative-text="Report"></lightning-icon></span>
+                        <span class="icon-container"><lightning-icon icon-name="standard:customer" size="small" alternative-text="Customer"></lightning-icon></span>
+                        <span class="icon-container"><lightning-icon icon-name="standard:service_appointment" size="small" alternative-text="Treatment"></lightning-icon></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Trials Section - First priority -->
+        <div class="trials-section">
+            <div class="slds-grid slds-wrap slds-gutters slds-p-around_medium">
+                <div class="slds-col slds-size_1-of-1">
+                    <template if:true={showTrialsTable}>
+                        <div class="section-title-container animate-fade-in">
+                            <div class="section-title-icon">
+                                <lightning-icon icon-name="standard:calibration" size="small" alternative-text="Trials"></lightning-icon>
+                            </div>
+                            <h2 class="section-title">Your Eligible Clinical Trials</h2>
+                        </div>
+                        
+                        <!-- Card-based trial layout instead of table -->
+                        <div class="trials-cards-container animate-slide-up">
+                            <template for:each={eligibleTrials} for:item="trial">
+                                <div key={trial.TrialName} class="trial-card animate-fade-in">
+                                    <div class="trial-card-header">
+                                        <div class="trial-icon-container">
+                                            <lightning-icon icon-name="standard:survey" size="medium" alternative-text="Trial"></lightning-icon>
+                                        </div>
+                                        <div class="trial-title-container">
+                                            <h3 class="trial-name">{trial.TrialName}</h3>
+                                        </div>
+                                        <template if:true={trial.isEnrolled}>
+                                            <div class="enrolled-badge">
+                                                <lightning-icon icon-name="utility:success" size="x-small" alternative-text="Enrolled" class="enrolled-icon"></lightning-icon>
+                                                Enrolled
+                                            </div>
+                                        </template>
+                                    </div>
+                                    <div class="trial-card-body">
+                                        <p class="trial-description">{trial.Description}</p>
+                                        
+                                        <div class="trial-criteria-section">
+                                            <div class="trial-criteria-matched">
+                                                <div class="criteria-header">
+                                                    <lightning-icon icon-name="utility:success" size="x-small" alternative-text="Matched" class="success-icon"></lightning-icon>
+                                                    <h4 class="criteria-title">Criteria Matched</h4>
+                                                </div>
+                                                <div class="criteria-tags">
+                                                    <template for:each={trial.CreteriaMatched} for:item="criteria">
+                                                        <span key={criteria} class="criteria-tag matched-tag">
+                                                            <lightning-icon icon-name="utility:check" size="xx-small" alternative-text="Match" class="tag-icon"></lightning-icon>
+                                                            {criteria}
+                                                        </span>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="trial-criteria-not-matched">
+                                                <template if:true={trial.CreteriaNotMatched.length}>
+                                                    <div class="criteria-header">
+                                                        <lightning-icon icon-name="utility:warning" size="x-small" alternative-text="Not Matched" class="warning-icon"></lightning-icon>
+                                                        <h4 class="criteria-title">Criteria Not Matched</h4>
+                                                    </div>
+                                                    <div class="criteria-tags">
+                                                        <template for:each={trial.CreteriaNotMatched} for:item="criteria">
+                                                            <span key={criteria} class="criteria-tag not-matched-tag">
+                                                                <lightning-icon icon-name="utility:close" size="xx-small" alternative-text="No Match" class="tag-icon"></lightning-icon>
+                                                                {criteria}
+                                                            </span>
+                                                        </template>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="trial-action">
+                                            <template if:false={trial.isEnrolled}>
+                                                <button class="slds-button slds-button_brand" 
+                                                        onclick={handleEnrollClick} 
+                                                        data-trial-name={trial.TrialName}
+                                                        disabled={isEnrolling}>
+                                                    <template if:true={isEnrolling}>
+                                                        <lightning-spinner alternative-text="Enrolling" size="x-small" variant="inverse"></lightning-spinner>
+                                                        &nbsp;Enrolling...
+                                                    </template>
+                                                    <template if:false={isEnrolling}>
+                                                        <lightning-icon icon-name="utility:add" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                                        Know More....
+                                                    </template>
+                                                </button>
+                                            </template>
+                                            <template if:true={trial.isEnrolled}>
+                                                <button class="slds-button slds-button_success" disabled>
+                                                    <lightning-icon icon-name="utility:check" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                                    Already Enrolled
+                                                </button>
+                                            </template>
+                                            <button class="slds-button slds-button_neutral">
+                                                <lightning-icon icon-name="utility:call" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                                Contact Coordinator
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                   
+                </div>
+            </div>
+        </div>
+
+        <!-- Information Sections -->
+        <div class="info-sections slds-p-around_medium">
+            <div class="section-title-container animate-fade-in">
+                <div class="section-title-icon">
+                    <lightning-icon icon-name="standard:education" size="small" alternative-text="Information"></lightning-icon>
+                </div>
+                <h2 class="section-title">Clinical Research Information</h2>
+            </div>
+            
+            <div class="slds-grid slds-wrap slds-gutters slds-p-top_medium">
+                <!-- Left Column - About Clinical Trials -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-p-bottom_medium">
+                    <div class="info-card animate-slide-up">
+                        <div class="card-header">
+                            <lightning-icon icon-name="standard:solution" size="small" alternative-text="About Clinical Trials"></lightning-icon>
+                            <h2 class="slds-text-heading_small slds-m-left_small">Understanding Clinical Trials</h2>
+                        </div>
+                        <div class="card-body">
+                            <p>Clinical trials are research studies performed in people that evaluate a medical, surgical, or behavioral intervention. They are the primary way that researchers find out if a new treatment is safe and effective in people.</p>
+                            
+                            <div class="info-stats slds-m-top_medium">
+                                <div class="stat-item animate-count-up" data-count="10000">
+                                    <div class="stat-value">10,000+</div>
+                                    <div class="stat-label">Active Clinical Trials</div>
+                                </div>
+                                <div class="stat-item animate-count-up" data-count="185">
+                                    <div class="stat-value">185+</div>
+                                    <div class="stat-label">Countries</div>
+                                </div>
+                                <div class="stat-item animate-count-up" data-count="1500000">
+                                    <div class="stat-value">1.5M+</div>
+                                    <div class="stat-label">Participants</div>
+                                </div>
+                            </div>
+                            
+                            <div class="cta-container slds-m-top_medium">
+                                <button class="slds-button slds-button_brand pulse-button">Find More Trials</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column - Benefits and Process -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <div class="info-card animate-slide-up" style="animation-delay: 0.2s;">
+                        <div class="card-header">
+                            <lightning-icon icon-name="standard:service_appointment" size="small" alternative-text="Benefits"></lightning-icon>
+                            <h2 class="slds-text-heading_small slds-m-left_small">Participation Benefits</h2>
+                        </div>
+                        <div class="card-body">
+                            <ul class="benefits-list">
+                                <li class="benefit-item">
+                                    <lightning-icon icon-name="utility:check" size="x-small" alternative-text="Benefit" class="slds-m-right_x-small"></lightning-icon>
+                                    Access to new treatments before they're widely available
+                                </li>
+                                <li class="benefit-item">
+                                    <lightning-icon icon-name="utility:check" size="x-small" alternative-text="Benefit" class="slds-m-right_x-small"></lightning-icon>
+                                    Expert medical care at leading healthcare facilities
+                                </li>
+                                <li class="benefit-item">
+                                    <lightning-icon icon-name="utility:check" size="x-small" alternative-text="Benefit" class="slds-m-right_x-small"></lightning-icon>
+                                    Help advance medical research and treatment options
+                                </li>
+                                <li class="benefit-item">
+                                    <lightning-icon icon-name="utility:check" size="x-small" alternative-text="Benefit" class="slds-m-right_x-small"></lightning-icon>
+                                    Potential compensation for your time and travel
+                                </li>
+                            </ul>
+                            
+                            <div class="steps-container slds-m-top_medium">
+                                <h3 class="slds-text-heading_small slds-m-bottom_small">Trial Process</h3>
+                                <div class="process-steps">
+                                    <div class="step animate-pulse">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">Screening</div>
+                                    </div>
+                                    <div class="step-arrow">→</div>
+                                    <div class="step animate-pulse" style="animation-delay: 0.5s;">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">Enrollment</div>
+                                    </div>
+                                    <div class="step-arrow">→</div>
+                                    <div class="step animate-pulse" style="animation-delay: 1s;">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">Treatment</div>
+                                    </div>
+                                    <div class="step-arrow">→</div>
+                                    <div class="step animate-pulse" style="animation-delay: 1.5s;">
+                                        <div class="step-number">4</div>
+                                        <div class="step-content">Follow-up</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Testimonials Section -->
+        <div class="testimonials-section slds-p-around_medium">
+            <div class="section-title-container animate-fade-in">
+                <div class="section-title-icon">
+                    <lightning-icon icon-name="standard:feedback" size="small" alternative-text="Testimonials"></lightning-icon>
+                </div>
+                <h2 class="section-title">Patient Experiences</h2>
+            </div>
+            
+            <div class="testimonials-container slds-m-top_medium">
+                <div class="testimonial-card animate-slide-in">
+                    <div class="testimonial-quote">"Participating in a clinical trial gave me access to cutting-edge treatments that weren't available elsewhere. The care team was exceptional throughout the entire process."</div>
+                    <div class="testimonial-author">- Sarah M., Diabetes Trial Participant</div>
+                </div>
+                <div class="testimonial-card animate-slide-in" style="animation-delay: 0.3s;">
+                    <div class="testimonial-quote">"Not only did the trial help improve my condition, but I felt good knowing I was contributing to research that could help others with similar health challenges."</div>
+                    <div class="testimonial-author">- James T., Cardiovascular Study Participant</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Section -->
+        <div class="footer-section">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-p-around_medium">
+                    <h3 class="footer-title">Have Questions?</h3>
+                    <p class="footer-text">Our clinical research team is here to help you understand the process and answer any questions you may have about participation.</p>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-p-around_medium">
+                    <div class="footer-button-container">
+                        <button class="slds-button slds-button_neutral footer-button">Contact Us</button>
+                        <button class="slds-button slds-button_brand footer-button">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

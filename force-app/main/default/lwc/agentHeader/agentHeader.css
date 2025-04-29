@@ -1,0 +1,791 @@
+.clinical-research-container {
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+    background-color: #f8f9fb;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+/* Header Banner Styling - Compact Version */
+.header-banner-compact {
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
+    color: white;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.header-banner-compact:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.banner-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.banner-subtitle-small {
+    font-size: 1rem;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+    margin-top: 0.25rem;
+}
+
+.banner-icons-compact {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+    margin-top: 0.5rem;
+}
+
+.icon-container {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.icon-container:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Section Title Styling */
+.section-title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e0e5ee;
+    padding-bottom: 0.75rem;
+}
+
+.section-title-icon {
+    background-color: #0277bd;
+    border-radius: 50%;
+    padding: 0.5rem;
+    margin-right: 0.75rem;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #16325c;
+}
+
+/* Trials Section */
+.trials-section {
+    margin-top: 1rem;
+}
+
+/* Card-based Trials Layout */
+.trials-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.trial-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    flex: 1;
+    min-width: 300px;
+    border: 1px solid #e0e5ee;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.trial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.trial-card-header {
+    background: linear-gradient(135deg, #0277bd, #039be5);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e5ee;
+}
+
+.trial-icon-container {
+    margin-right: 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trial-title-container {
+    flex: 1;
+}
+
+.trial-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.trial-card-body {
+    padding: 1.25rem;
+}
+
+.trial-description {
+    color: #3e4956;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+}
+
+.trial-criteria-section {
+    margin-bottom: 1.25rem;
+}
+
+.trial-criteria-matched,
+.trial-criteria-not-matched {
+    margin-bottom: 1rem;
+}
+
+.criteria-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.criteria-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    color: #16325c;
+}
+
+.criteria-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.criteria-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.matched-tag {
+    background-color: #eaf5fe;
+    color: #006dcc;
+    border: 1px solid #cde0f7;
+}
+
+.not-matched-tag {
+    background-color: #fef3ea;
+    color: #bf6118;
+    border: 1px solid #f9d2aa;
+}
+
+.tag-icon {
+    margin-right: 0.25rem;
+}
+
+.success-icon {
+    --sds-c-icon-color-foreground-default: #04844b;
+}
+
+.warning-icon {
+    --sds-c-icon-color-foreground-default: #bf6118;
+}
+
+/* Stylish button styles */
+.trial-action {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-start;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.trial-action .slds-button {
+    position: relative;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    outline: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.trial-action .slds-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+    border-radius: 30px;
+}
+
+.trial-action .slds-button:hover:not(:disabled)::before,
+.trial-action .slds-button:focus:not(:disabled)::before {
+    width: 100%;
+}
+
+.trial-action .slds-button:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Primary Button (Enroll) */
+.trial-action .slds-button_brand {
+    background: linear-gradient(135deg, #0070d2, #1589ee);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 112, 210, 0.3);
+}
+
+.trial-action .slds-button_brand:hover:not(:disabled),
+.trial-action .slds-button_brand:focus:not(:disabled) {
+    background: linear-gradient(135deg, #0057a3, #0070d2);
+    box-shadow: 0 6px 12px rgba(0, 112, 210, 0.4);
+    transform: translateY(-2px);
+}
+
+.trial-action .slds-button_brand:disabled {
+    background: linear-gradient(135deg, #78b0e3, #90c2f0);
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Success button (Already Enrolled) */
+.trial-action .slds-button_success {
+    background: linear-gradient(135deg, #04844b, #4bca81);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 8px rgba(4, 132, 75, 0.3);
+}
+
+.trial-action .slds-button_success:hover:not(:disabled),
+.trial-action .slds-button_success:focus:not(:disabled) {
+    background: linear-gradient(135deg, #046c3d, #04844b);
+    box-shadow: 0 6px 12px rgba(4, 132, 75, 0.4);
+    transform: translateY(-2px);
+}
+
+.trial-action .slds-button_success:disabled {
+    opacity: 0.9;
+    cursor: not-allowed;
+}
+
+/* Neutral button (Contact) */
+.trial-action .slds-button_neutral {
+    background: white;
+    border: 1px solid #d8dde6;
+    color: #0070d2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.trial-action .slds-button_neutral:hover:not(:disabled),
+.trial-action .slds-button_neutral:focus:not(:disabled) {
+    background: #f4f6f9;
+    color: #005fb2;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Button with spinner */
+.trial-action .slds-button_brand lightning-spinner {
+    margin-right: 0.5rem;
+}
+
+/* Pulse animation for the Enroll button */
+@keyframes button-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 112, 210, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 112, 210, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 112, 210, 0);
+    }
+}
+
+.trial-action .slds-button_brand:not(:disabled) {
+    animation: button-pulse 2s infinite;
+}
+
+/* Media queries for responsive buttons */
+@media (max-width: 480px) {
+    .trial-action {
+        flex-direction: column;
+    }
+    
+    .trial-action .slds-button {
+        width: 100%;
+    }
+}
+
+/* No Trials Message */
+.no-trials-message {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #706e6b;
+    height: 100%;
+    min-height: 100px;
+    margin-bottom: 2rem;
+}
+
+/* Info Sections */
+.info-sections {
+    background-color: white;
+}
+
+.info-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    height: 100%;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #0277bd, #039be5);
+    color: white;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+/* Info Stats */
+.info-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 0.75rem;
+    min-width: 85px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0070d2;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #706e6b;
+    margin-top: 0.25rem;
+}
+
+/* Benefits List */
+.benefits-list {
+    list-style: none;
+    padding: 0;
+}
+
+.benefits-list li {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.benefit-item {
+    animation-fill-mode: both;
+    animation-duration: 0.5s;
+    animation-name: fadeIn;
+    animation-delay: calc(var(--animation-order, 0) * 0.1s);
+}
+
+.benefits-list li:nth-child(1) {
+    --animation-order: 1;
+}
+
+.benefits-list li:nth-child(2) {
+    --animation-order: 2;
+}
+
+.benefits-list li:nth-child(3) {
+    --animation-order: 3;
+}
+
+.benefits-list li:nth-child(4) {
+    --animation-order: 4;
+}
+
+/* Process Steps */
+.steps-container {
+    background-color: #f7f9fd;
+    padding: 1.25rem;
+    border-radius: 8px;
+}
+
+.process-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.step {
+    text-align: center;
+    flex: 1;
+    min-width: 80px;
+}
+
+.step-number {
+    background-color: #0277bd;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.5rem auto;
+    font-weight: bold;
+}
+
+.step-arrow {
+    color: #0277bd;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.step-content {
+    font-size: 0.875rem;
+    color: #3e4956;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    background-color: #f8f9fb;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.testimonials-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.testimonial-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.testimonial-card:before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 3rem;
+    color: #f0f0f0;
+    font-family: Georgia, serif;
+    z-index: 0;
+}
+
+.testimonial-quote {
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+    color: #3e4956;
+}
+
+.testimonial-author {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #16325c;
+    text-align: right;
+}
+
+/* Footer Section */
+.footer-section {
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
+    color: white;
+    padding: 1rem 0;
+}
+
+.footer-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.footer-text {
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.footer-button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    height: 100%;
+    align-items: center;
+}
+
+.footer-button {
+    font-weight: 600;
+}
+
+/* Call to Action */
+.cta-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.pulse-button {
+    position: relative;
+}
+
+.pulse-button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0.25rem;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 0 0 rgba(0, 112, 210, 0.7);
+}
+
+/* Table Styling */
+.slds-table {
+    border-collapse: separate;
+}
+
+.slds-table th {
+    background-color: #f3f3f3;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.slds-table th:first-child {
+    border-top-left-radius: 4px;
+}
+
+.slds-table th:last-child {
+    border-top-right-radius: 4px;
+}
+
+.slds-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 112, 210, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 112, 210, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 112, 210, 0);
+    }
+}
+
+@keyframes countUp {
+    from {
+        content: "0";
+    }
+    to {
+        content: attr(data-count);
+    }
+}
+
+@keyframes pulse-step {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+}
+
+.animate-slide-in {
+    animation: slideIn 0.8s ease-out;
+}
+
+.animate-pulse {
+    animation: pulse-step 2s infinite;
+}
+
+.animate-count-up {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+    animation-delay: 0.5s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .banner-icons-compact {
+        justify-content: center;
+        margin-top: 1rem;
+    }
+    
+    .process-steps {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .step-arrow {
+        transform: rotate(90deg);
+    }
+    
+    .testimonials-container {
+        flex-direction: column;
+    }
+    
+    .footer-button-container {
+        justify-content: center;
+        margin-top: 1rem;
+    }
+    
+    .cta-container {
+        flex-direction: column;
+    }
+}
+
+.enrolled-badge {
+    background-color: #4bca81;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 1rem;
+}
+
+.enrolled-icon {
+    --sds-c-icon-color-foreground-default: white;
+}
+
+/* Button icon styles */
+.trial-action .slds-button_brand lightning-icon {
+    --sds-c-icon-color-foreground-default: white;
+}
+
+.trial-action .slds-button_success lightning-icon {
+    --sds-c-icon-color-foreground-default: white;
+}
+
+.trial-action .slds-button_neutral lightning-icon {
+    --sds-c-icon-color-foreground-default: #0070d2;
+}
+
+.trial-action .slds-button_neutral:hover lightning-icon,
+.trial-action .slds-button_neutral:focus lightning-icon {
+    --sds-c-icon-color-foreground-default: #005fb2;
+}

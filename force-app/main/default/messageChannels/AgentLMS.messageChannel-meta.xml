@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>LMS for Agent</description>
+    <isExposed>true</isExposed>
+    <lightningMessageFields>
+        <description>This is the records that will be passed to other components.</description>
+        <fieldName>records</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>This is the filter payload that will be passed to other components.</description>
+        <fieldName>filters</fieldName>
+    </lightningMessageFields>
+    <masterLabel>AgentLMS</masterLabel>
+</LightningMessageChannel>

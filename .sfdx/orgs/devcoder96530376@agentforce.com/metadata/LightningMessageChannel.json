@@ -1,0 +1,18 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "createdById": "005gK000001RbqvQAC",
+      "createdByName": "Rakesh Patni",
+      "createdDate": "2025-04-12T14:45:15.000Z",
+      "fileName": "messageChannels/AgentLMS.messageChannel",
+      "fullName": "AgentLMS",
+      "id": "129gK00000122efQAA",
+      "lastModifiedById": "005gK000001RbqvQAC",
+      "lastModifiedByName": "Rakesh Patni",
+      "lastModifiedDate": "2025-04-12T14:45:24.000Z",
+      "manageableState": "unmanaged",
+      "type": "LightningMessageChannel"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Invoke_Association_Agent</name>
+        <label>Invoke Association Agent</label>
+        <locationX>308</locationX>
+        <locationY>384</locationY>
+        <actionName>Association_Agent</actionName>
+        <actionType>generateAiAgentResponse</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>userMessage</name>
+            <value>
+                <stringValue>Perform all the activities for Patient {!PatientName} (Association record  {!$Record.Id} enrolled in the clinical trial {!TrialName}
+</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>Association_Agent</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <assignments>
+        <name>Assign_Patient_and_Clinicaltrial_Name</name>
+        <label>Assign Patient and Clinicaltrial Name</label>
+        <locationX>308</locationX>
+        <locationY>276</locationY>
+        <assignmentItems>
+            <assignToReference>TrialName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Clinical_Trial__r.Clinical_Trial_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PatientName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Patient__r.LastName</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Invoke_Association_Agent</targetReference>
+        </connector>
+    </assignments>
+    <environments>Default</environments>
+    <interviewLabel>Association After Create Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Association After Create Flow V2</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <object>Association__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <scheduledPaths>
+            <name>Run_after_a_minute</name>
+            <connector>
+                <targetReference>Assign_Patient_and_Clinicaltrial_Name</targetReference>
+            </connector>
+            <label>Run after a minute</label>
+            <offsetNumber>1</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>CreatedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>PatientName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>TrialName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
